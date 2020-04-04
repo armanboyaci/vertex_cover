@@ -2,8 +2,8 @@ Adana,Hatay,Osmaniye,Kahramanmaras,Kayseri,Nigde,Mersin
 Adiyaman,Sanliurfa,Diyarbakir,Malatya,Kahramanmaras,Gaziantep
 Afyon,Isparta,Konya,Eskisehir,Kutahya,Usak,Denizli,Burdur
 Agri,Van,Igdir,Kars,Erzurum,Mus,Bitlis
-Amasya,Yozgat,Tokat,Samsin,Corum
-Ankara,Konya,Aksaray,Kirsehir,Kirikkale,Cankiri,Bolu,Eskisehir,Afyon
+Amasya,Yozgat,Tokat,Samsun,Corum
+Ankara,Konya,Aksaray,Kirsehir,Kirikkale,Cankiri,Bolu,Eskisehir
 Antalya,Mersin,Karaman,Konya,Isparta,Burdur,Mugla
 Artvin,Rize,Erzurum,Ardahan
 Aydin,Mugla,Denizli,Manisa,Izmir
@@ -19,10 +19,10 @@ Cankiri,Ankara,Kirikkale,Corum,Kastamonu,Zonguldak,Bolu,Karabuk
 Corum,Yozgat,Amasya,Samsun,Sinop,Kastamonu,Cankiri,Kirikkale
 Denizli,Mugla,Burdur,Afyon,Usak,Manisa,Aydin
 Diyarbakir,Sanliurfa,Mardin,Batman,Mus,Bingol,Elazig,Malatya,Adiyaman
-Edirne,Canakkale,Tekirdag,Kirikkale
+Edirne,Canakkale,Tekirdag,Kirklareli
 Elazig,Diyarbakir,Bingol,Tunceli,Erzincan,Malatya
 Erzincan,Elazig,Tunceli,Bingol,Erzurum,Bayburt,Gumushane,Giresun,Sivas,Malatya
-Erzurum,Bingol,Mus,Agri,Kars,Ardahan,Artvin,Rize,Trabzon,Bayburt,Erzincan
+Erzurum,Bingol,Mus,Agri,Kars,Ardahan,Artvin,Rize,Bayburt,Erzincan
 Eskisehir,Afyon,Konya,Ankara,Bolu,Bilecik,Kutahya
 Gaziantep,Kilis,Sanliurfa,Adiyaman,Kahramanmaras,Osmaniye,Hatay
 Giresun,Gumushane,Trabzon,Erzincan,Sivas,Ordu
@@ -38,7 +38,7 @@ Kastamonu,Corum,Sinop,Cankiri,Bartin,Karabuk
 Kayseri,Adana,Kahramanmaras,Sivas,Yozgat,Nevsehir,Nigde
 Kirklareli,Edirne,Tekirdag,Istanbul
 Kirsehir,Nevsehir,Yozgat,Kirikkale,Ankara,Aksaray
-Kocaeli,Yalova,Istanbul,Bursa,Bilecik,Sakarya
+Kocaeli,Yalova,Istanbul,Bursa,Sakarya
 Konya,Antalya,Karaman,Mersin,Nigde,Aksaray,Ankara,Eskisehir,Afyon,Isparta
 Kutahya,Manisa,Usak,Afyon,Eskisehir,Bilecik,Bursa,Balikesir
 Malatya,Kahramanmaras,Adiyaman,Diyarbakir,Elazig,Erzincan,Sivas
@@ -49,6 +49,7 @@ Mugla,Antalya,Burdur,Denizli,Aydin
 Mus,Diyarbakir,Batman,Bitlis,Agri,Erzurum,Bingol
 Nevsehir,Nigde,Kayseri,Yozgat,Kirsehir,Aksaray
 Nigde,Nevsehir,Kayseri,Adana,Mersin,Konya,Aksaray
+Ordu,Giresun,Samsun,Sivas,Tokat
 Manisa,Izmir,Aydin,Usak,Denizli,Kutahya,Balikesir
 Rize,Artvin,Erzurum,Bayburt,Trabzon
 Sakarya,Duzce,Bolu,Bilecik,Bursa,Kocaeli
@@ -62,7 +63,7 @@ Trabzon,Rize,Bayburt,Gumushane,Giresun
 Tunceli,Elazig,Bingol,Erzincan
 Sanliurfa,Gaziantep,Adiyaman,Diyarbakir,Mardin
 Usak,Manisa,Denizli,Afyon,Kutahya
-Van,Hakkari,Siranak,Siirt,Bitlis,Agri
+Van,Hakkari,Sirnak,Siirt,Bitlis,Agri
 Yozgat,Kayseri,Sivas,Tokat,Amasya,Corum,Kirikkale,Kirsehir,Nevsehir
 Zonguldak,Bartin,Cankiri,Bolu,Duzce,Karabuk
 Aksaray,Nigde,Nevsehir,Kirsehir,Ankara,Konya
