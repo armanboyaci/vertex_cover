@@ -6,24 +6,30 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.4.1
+#       jupytext_version: 1.4.2
 #   kernelspec:
-#     display_name: vertexcover
+#     display_name: vertex-cover
 #     language: python
-#     name: vertexcover
+#     name: vertex-cover
 # ---
 
+import pulp
+import operator
 import pandas as pd
 import networkx as nx
-from networkx.algorithms.approximation import min_weighted_vertex_cover
 import matplotlib.pyplot as plt
+from networkx.algorithms.approximation import min_weighted_vertex_cover
+
+
+plt.style.use('fivethirtyeight')
 
 with open('data/neighbor_cities_in_Turkey.txt', 'r') as f:
     lines = f.read().splitlines() 
 
 G = nx.from_dict_of_lists({line.split(',')[0]: line.split(',')[1:] for line in lines})
 
-len(set(G.nodes))
+n = len(set(G.nodes))
+n
 
 G.nodes
 
@@ -95,13 +101,59 @@ len(min_weighted_vertex_cover(G))
 # maximum matching number is a lower bound for the min. vertex cover number
 len(nx.max_weight_matching(G))
 
-# |V| = a minimal vertex cover + a maximal independent set
-len(G.nodes) - len(nx.algorithms.mis.maximal_independent_set(G))
+# n - denegeracy number of \bar(G) is another lower bound for min. vertex cover number of G
+G_bar = nx.complement(G)
+n - nx.core.core_number(G_bar)["Istanbul"]
 
-vertex_cover = set(G.nodes).difference(nx.algorithms.mis.maximal_independent_set(G))
+# |V| = a minimal vertex cover + a maximal independent set
+# networkx provides a maximal independent set algorithm
+# the algorithm returns a different maximal independent set each time
+# we call the algorithm several times and then select the biggest one
+trials = []
+for _ in range(100_000):
+    independet_set = nx.algorithms.mis.maximal_independent_set(G)
+    trials.append( (n - len(independet_set), independet_set) )
+min(trials, key=operator.itemgetter(0))
+
+vertex_cover = set(G.nodes).difference(min(trials, key=operator.itemgetter(0))[1])
 
 plt.figure(figsize=(18,8)) 
 nodes = nx.draw_networkx_nodes(G, pos=pos, alpha=0.3, node_size=100, node_color='green')
-vc = nx.draw_networkx_nodes(G, nodelist=vertex_cover, pos=pos, alpha=0.2, node_size=500, node_color='blue')
+vc = nx.draw_networkx_nodes(G, nodelist=vertex_cover, pos=pos, alpha=0.4, node_size=500, node_color='blue')
 labels = nx.draw_networkx_labels(G, pos=pos)
 edges = nx.draw_networkx_edges(G, pos=pos, alpha=0.3)
+
+# ### Mathematical Programming Model
+
+# $\min \sum_{u \in V}(x_u) $
+#
+# s.t.
+#
+# $x_u + x_v \geq 1$, $\forall u,v \in E$
+#
+# $x_u \in \{0,1\}$
+
+# +
+vertexcover_model = pulp.LpProblem("The_Vertex_Cover_Problem", pulp.LpMinimize)
+x = pulp.LpVariable.dict("x_%s", G.nodes, cat = pulp.LpBinary)
+
+vertexcover_model += sum([x[u] for u in G.nodes]) # objective function 
+
+for u,v in G.edges:
+    vertexcover_model += x[u] + x[v] >= 1
+# -
+
+vertexcover_model.solve()
+
+# optimum value
+sum([(x[u].value()) for u in G.nodes])
+
+# the set of vertices in the optimum vertex cover
+optimum_vc = [u for u in G.nodes if x[u].value() == 1]
+
+plt.figure(figsize=(18,8)) 
+nodes = nx.draw_networkx_nodes(G, pos=pos, alpha=0.3, node_size=100, node_color='green')
+vc = nx.draw_networkx_nodes(G, nodelist=optimum_vc, pos=pos, alpha=0.4, node_size=500, node_color='blue')
+labels = nx.draw_networkx_labels(G, pos=pos)
+edges = nx.draw_networkx_edges(G, pos=pos, alpha=0.3)
+plt.grid(False)
